@@ -1,50 +1,34 @@
-'use client';
+"use client";
 
-import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 
 const AchieverCard = ({ name, role, imageSrc, linkedInUrl, index }) => {
   const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: false, amount: 0.3 });
-  const controls = useAnimation();
+  const isInView = useInView(cardRef, { once: true, amount: 0.3 }); // trigger only once
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (isInView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
     }
-  }, [isInView, controls]);
-
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      scale: 0.98
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 15,
-        delay: index * 0.1,
-        duration: 0.5
-      }
-    }
-  };
+  }, [isInView, hasAnimated]);
 
   return (
     <motion.div
       ref={cardRef}
       className="flex flex-col"
-      variants={cardVariants}
-      initial="hidden"
-      animate={controls}
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
+      animate={hasAnimated ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{
+        type: "spring",
+        stiffness: 50,
+        damping: 15,
+        delay: index * 0.1,
+        duration: 0.5,
+      }}
     >
       <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
         <Image
@@ -52,7 +36,7 @@ const AchieverCard = ({ name, role, imageSrc, linkedInUrl, index }) => {
           alt={name}
           fill
           className="object-cover"
-          unoptimized={true}
+          unoptimized
         />
       </div>
       <div className="flex items-center justify-between bg-gray-50 py-2 px-3">
@@ -63,8 +47,14 @@ const AchieverCard = ({ name, role, imageSrc, linkedInUrl, index }) => {
         {linkedInUrl && (
           <Link href={linkedInUrl} target="_blank" rel="noopener noreferrer">
             <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="white">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="10"
+                viewBox="0 0 24 24"
+                fill="white"
+              >
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </div>
           </Link>
@@ -75,166 +65,74 @@ const AchieverCard = ({ name, role, imageSrc, linkedInUrl, index }) => {
 };
 
 export default function WallOfAchievers() {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
-  const controls = useAnimation();
-  useEffect(() => {
-    if (isInView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
-    }
-  }, [isInView, controls]);
-
   const achievers = [
     {
-      name: 'Janet Jane',
-      role: 'Volunteer',
-      imageSrc: '/images/achievers/achiever1.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Janet Jane",
+      role: "Volunteer",
+      imageSrc: "/images/achievers/achiever1.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'David Wilson',
-      role: 'Product Designer',
-      imageSrc: '/images/achievers/achiever2.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "David Wilson",
+      role: "Product Designer",
+      imageSrc: "/images/achievers/achiever2.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Mary Olanrewaju',
-      role: 'Sales Director',
-      imageSrc: '/images/achievers/achiever3.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Mary Olanrewaju",
+      role: "Sales Director",
+      imageSrc: "/images/achievers/achiever3.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Samuel Chibuzor',
-      role: 'Software Developer',
-      imageSrc: '/images/achievers/achiever4.png',
-      linkedInUrl: 'https://linkedin.com'
-    },
-    
-    {
-      name: 'Sarah Johnson',
-      role: 'Project Manager',
-      imageSrc: '/images/achievers/achiever5.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Samuel Chibuzor",
+      role: "Software Developer",
+      imageSrc: "/images/achievers/achiever4.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Michael Adebayo',
-      role: 'UI/UX Designer',
-      imageSrc: '/images/achievers/achiever6.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Sarah Johnson",
+      role: "Project Manager",
+      imageSrc: "/images/achievers/achiever5.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Jennifer Okoro',
-      role: 'Data Scientist',
-      imageSrc: '/images/achievers/achiever7.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Michael Adebayo",
+      role: "UI/UX Designer",
+      imageSrc: "/images/achievers/achiever6.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Daniel Nwachukwu',
-      role: 'Backend Developer',
-      imageSrc: '/images/achievers/achiever8.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Jennifer Okoro",
+      role: "Data Scientist",
+      imageSrc: "/images/achievers/achiever7.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Ezekiel O. Obasanya',
-      role: 'Frontend Developer',
-      imageSrc: '/images/achievers/achiever9.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Daniel Nwachukwu",
+      role: "Backend Developer",
+      imageSrc: "/images/achievers/achiever8.png",
+      linkedInUrl: "https://linkedin.com",
     },
     {
-      name: 'Ezekiel O. Obasanya',
-      role: 'Frontend Developer',
-      imageSrc: '/images/achievers/achiever9.png',
-      linkedInUrl: 'https://linkedin.com'
-    },
-    {
-      name: 'Ezekiel O. Obasanya',
-      role: 'Frontend Developer',
-      imageSrc: '/images/achievers/achiever9.png',
-      linkedInUrl: 'https://linkedin.com'
-    },
-    {
-      name: 'Ezekiel O. Obasanya',
-      role: 'Frontend Developer',
-      imageSrc: '/images/achievers/achiever9.png',
-      linkedInUrl: 'https://linkedin.com'
+      name: "Ezekiel O. Obasanya",
+      role: "Frontend Developer",
+      imageSrc: "/images/achievers/achiever9.png",
+      linkedInUrl: "https://linkedin.com",
     },
   ];
 
-  const titleVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      scale: 0.98
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 60,
-        damping: 20
-      }
-    }
-  };
-
-  const textVariants = {
-    hidden: {
-      opacity: 0,
-      y: 15,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 15,
-        delay: 0.2
-      }
-    }
-  };
-
-
-
-
-
   return (
-    <motion.section
-      ref={sectionRef}
-      className="py-12 bg-white"
-      initial="hidden"
-      animate={controls}
-    >
+    <section className="py-12 px-5 sm:px-10 bg-white">
       <div className="container mx-auto px-4">
-        <motion.div
-          className="mb-12 text-center"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-        >
-          <motion.h2
-            className="text-2xl font-bold mb-3 text-black"
-            variants={titleVariants}
-          >
+        <div className="mb-12 text-center">
+          <h2 className="text-2xl font-bold mb-3 text-black">
             EduAid Wall of Achievers In Diaspora
-          </motion.h2>
-
-          <motion.p
-            className="text-sm text-gray-600 max-w-xl mx-auto"
-            variants={textVariants}
-          >
+          </h2>
+          <p className="text-sm text-gray-600 max-w-xl mx-auto">
             We empower education development and sustainability
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mb-8">
           {achievers.map((achiever, index) => (
@@ -258,6 +156,6 @@ export default function WallOfAchievers() {
           </Link>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -17,14 +17,14 @@ import ReferralSection from "@/components/sections/ReferralSection.jsx";
 import {
   ScrollProgress,
   LoadingScreen,
-  AnimatedBackground
+  AnimatedBackground,
 } from "@/components/ui";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative ">
       {/* Loading Screen */}
-      <LoadingScreen duration={2000} />
+      <LoadingScreen duration={1000} />
 
       {/* Scroll Progress Indicator */}
       <ScrollProgress color="#1F892B" height={4} position="top" />
@@ -42,7 +42,7 @@ export default function Home() {
         stats={[
           { value: "500+", label: "renovated schools" },
           { value: "72,000+", label: "scholarship awarded" },
-          { value: "1000+", label: "Teachers trained" }
+          { value: "1000+", label: "Teachers trained" },
         ]}
         primaryButtonText="Start a Fundraiser"
         primaryButtonLink="/fundraiser"
@@ -58,19 +58,26 @@ export default function Home() {
         features={[
           {
             title: "To empower 10 Million Students",
-            description: "through scholarships, e-learning, and vocational training",
-            stats: { current: "Current achievement: 8000 beneficiaries", percentage: "23%" }
+            description:
+              "through scholarships, e-learning, and vocational training",
+            stats: {
+              current: "Current achievement: 8000 beneficiaries",
+              percentage: "23%",
+            },
           },
           {
             title: "To Renovate or build 10,000 Schools",
             description: "Current achievement: 3000 schools",
-            stats: { percentage: "23%" }
+            stats: { percentage: "23%" },
           },
           {
             title: "To Train 500,000 Teachers in ICT",
             description: "and modern teaching methodologies",
-            stats: { current: "Current achievement: 5000 teachers trained", percentage: "23%" }
-          }
+            stats: {
+              current: "Current achievement: 5000 teachers trained",
+              percentage: "23%",
+            },
+          },
         ]}
       />
 
@@ -111,11 +118,10 @@ export default function Home() {
       <DonationSection />
 
       {/* Get Our Merchandise Section */}
-      <Merchandise />
+      {/* <Merchandise /> */}
 
       {/* Referral Section */}
       <ReferralSection />
-
     </main>
   );
 }

@@ -1,98 +1,63 @@
-'use client';
+"use client";
 
-import { useRef, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 export default function DonationSection() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
+
+  // ✅ Animate only once
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const controls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
+      controls.start("visible");
     }
   }, [isInView, controls]);
 
   const titleVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      scale: 0.98
-    },
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 60,
-        damping: 20
-      }
-    }
+      transition: { type: "spring", stiffness: 60, damping: 20 },
+    },
   };
 
   const textVariants = {
-    hidden: {
-      opacity: 0,
-      y: 15,
-    },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 15,
-        delay: 0.2
-      }
-    }
+      transition: { type: "spring", stiffness: 50, damping: 15, delay: 0.2 },
+    },
   };
 
   const contentVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 15,
-        delay: 0.3
-      }
-    }
+      transition: { type: "spring", stiffness: 50, damping: 15, delay: 0.3 },
+    },
   };
 
   const buttonVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 50,
-        damping: 15,
-        delay: 0.4
-      }
+      transition: { type: "spring", stiffness: 50, damping: 15, delay: 0.4 },
     },
     hover: {
       scale: 1.05,
       backgroundColor: "#176e22",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
   };
 
   return (
@@ -109,10 +74,8 @@ export default function DonationSection() {
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
+              transition: { staggerChildren: 0.1 },
+            },
           }}
         >
           <motion.h2
@@ -121,6 +84,7 @@ export default function DonationSection() {
           >
             Ready To Take Action?
           </motion.h2>
+
           <motion.p
             className="text-sm text-gray-700 max-w-2xl mx-auto"
             variants={textVariants}
@@ -135,9 +99,16 @@ export default function DonationSection() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-8">
             <div className="space-y-4 pl-4">
-              <h3 className="text-2xl font-semibold text-[#1F892B]">Make A Donation</h3>
-              <p className="text-gray-700">Invest in People, Invest in their growth</p>
-              <p className="text-gray-700">Invest in a stronger educational Standard</p>
+              <h3 className="text-2xl font-semibold text-[#1F892B]">
+                Make A Donation
+              </h3>
+              <p className="text-gray-700">
+                Invest in People, Invest in their growth
+              </p>
+              <p className="text-gray-700">
+                Invest in a stronger educational Standard
+              </p>
+
               <motion.div
                 variants={buttonVariants}
                 whileHover="hover"
@@ -151,13 +122,14 @@ export default function DonationSection() {
                 </Link>
               </motion.div>
             </div>
+
             <div className="relative h-72 md:h-80 rounded-lg overflow-hidden">
               <Image
                 src="/images/donation/image 29 (1).png"
                 alt="Donation"
                 fill
                 className="object-cover"
-                unoptimized={true}
+                unoptimized
               />
             </div>
           </div>

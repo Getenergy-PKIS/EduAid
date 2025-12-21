@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useRef, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 const MerchandiseItem = ({ title, price, imageSrc, index }) => {
   const itemRef = useRef(null);
@@ -12,9 +12,9 @@ const MerchandiseItem = ({ title, price, imageSrc, index }) => {
 
   useEffect(() => {
     if (isInView) {
-      controls.start('visible');
+      controls.start("visible");
     } else {
-      controls.start('hidden');
+      controls.start("hidden");
     }
   }, [isInView, controls]);
 
@@ -30,9 +30,9 @@ const MerchandiseItem = ({ title, price, imageSrc, index }) => {
         type: "spring",
         stiffness: 50,
         damping: 15,
-        delay: index * 0.1
-      }
-    }
+        delay: index * 0.1,
+      },
+    },
   };
 
   const buttonVariants = {
@@ -47,16 +47,16 @@ const MerchandiseItem = ({ title, price, imageSrc, index }) => {
         type: "spring",
         stiffness: 50,
         damping: 15,
-        delay: index * 0.1 + 0.2
-      }
+        delay: index * 0.1 + 0.2,
+      },
     },
     hover: {
       scale: 1.05,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
@@ -84,7 +84,7 @@ const MerchandiseItem = ({ title, price, imageSrc, index }) => {
         className="mt-auto"
       >
         <Link
-          href={`/merchandise/${title.toLowerCase().replace(/\s+/g, '-')}`}
+          href={`/merchandise/${title.toLowerCase().replace(/\s+/g, "-")}`}
           className="inline-flex items-center text-sm text-[#1F892B] font-medium"
         >
           Get
@@ -115,40 +115,40 @@ export default function Merchandise() {
 
   useEffect(() => {
     if (isInView) {
-      controls.start('visible');
+      controls.start("visible");
     } else {
-      controls.start('hidden');
+      controls.start("hidden");
     }
   }, [isInView, controls]);
 
   const merchandiseItems = [
     {
-      title: 'Water Bottles',
-      price: '70',
-      imageSrc: '/images/merchandise/water-bottles.png'
+      title: "Water Bottles",
+      price: "70",
+      imageSrc: "/images/merchandise/water-bottles.png",
     },
     {
-      title: 'Bags',
-      price: '50',
-      imageSrc: '/images/merchandise/bags.png'
+      title: "Bags",
+      price: "50",
+      imageSrc: "/images/merchandise/bags.png",
     },
     {
-      title: 'Face Cap',
-      price: '78',
-      imageSrc: '/images/merchandise/face-cap.png'
+      title: "Face Cap",
+      price: "78",
+      imageSrc: "/images/merchandise/face-cap.png",
     },
     {
-      title: 'Shopping Bags',
-      price: '52',
-      imageSrc: '/images/merchandise/shopping bags.png'
-    }
+      title: "Shopping Bags",
+      price: "52",
+      imageSrc: "/images/merchandise/shopping bags.png",
+    },
   ];
 
   const titleVariants = {
     hidden: {
       opacity: 0,
       y: 20,
-      scale: 0.98
+      scale: 0.98,
     },
     visible: {
       opacity: 1,
@@ -157,9 +157,9 @@ export default function Merchandise() {
       transition: {
         type: "spring",
         stiffness: 60,
-        damping: 20
-      }
-    }
+        damping: 20,
+      },
+    },
   };
 
   const textVariants = {
@@ -174,9 +174,9 @@ export default function Merchandise() {
         type: "spring",
         stiffness: 50,
         damping: 15,
-        delay: 0.2
-      }
-    }
+        delay: 0.2,
+      },
+    },
   };
 
   const buttonVariants = {
@@ -191,17 +191,17 @@ export default function Merchandise() {
         type: "spring",
         stiffness: 50,
         damping: 15,
-        delay: 0.4
-      }
+        delay: 0.4,
+      },
     },
     hover: {
       scale: 1.05,
       backgroundColor: "#176e22",
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
@@ -219,9 +219,9 @@ export default function Merchandise() {
             visible: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.1
-              }
-            }
+                staggerChildren: 0.1,
+              },
+            },
           }}
         >
           <motion.h2
