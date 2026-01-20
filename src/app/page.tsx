@@ -11,7 +11,6 @@ import WallOfAchievers from "@/components/sections/WallOfAchievers.jsx";
 import GetInTouch from "@/components/sections/GetInTouch.jsx";
 import FAQs from "@/components/sections/FAQs.jsx";
 import DonationSection from "@/components/sections/DonationSection.jsx";
-import Merchandise from "@/components/sections/Merchandise.jsx";
 import ReferralSection from "@/components/sections/ReferralSection.jsx";
 
 import {
@@ -118,7 +117,6 @@ export default function Home() {
       <DonationSection />
 
       {/* Get Our Merchandise Section */}
-      {/* <Merchandise /> */}
 
       {/* Referral Section */}
       <ReferralSection />

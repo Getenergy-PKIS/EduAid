@@ -69,7 +69,10 @@ export default function AboutPage() {
             className="inline-flex items-center gap-2 px-6 py-3 border border-green-600 text-green-700 rounded-full hover:bg-green-600 hover:text-white transition"
           >
             <span className="flex items-center gap-2">
-              <img src="/images/about/img4.png" alt="" />
+              <Image
+                src="/images/about/img4.png"
+                alt="EduAid Africa volunteers"
+              />
               Visit the website
             </span>
           </Link>

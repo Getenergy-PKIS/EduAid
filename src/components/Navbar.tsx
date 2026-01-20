@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const navItems = [
-  { label: 'Home', path: '/' },
-  { label: 'About Us', path: '/about' },
-  { label: 'Programs', path: '/programs' },
-  { label: 'CSE Partners', path: '/cse-partners' },
-  { label: 'Diaspora Portal', path: '/diaspora-portal' },
-  { label: 'News & Events', path: '/news-events' },
-  { label: 'Contact Us', path: '/contact' },
+  { label: "Home", path: "/" },
+  { label: "About Us", path: "/about" },
+  { label: "Get Involve", path: "/getinvolve" },
+  { label: "CSE Partners", path: "/cse-partners" },
+  { label: "Diaspora Portal", path: "/diaspora-portal" },
+  { label: "News & Events", path: "/news-events" },
+  { label: "Contact Us", path: "/contact" },
 ];
 
 export default function Navbar() {
@@ -24,13 +25,20 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="w-full bg-white fixed top-0 left-0 shadow-sm" style={{ zIndex: 1000 }}>
+    <nav
+      className="w-full bg-white fixed top-0 left-0 shadow-sm"
+      style={{ zIndex: 1000 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-[72px]">
         <div className="flex justify-between items-center h-[80px] sm:h-[100px]">
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center" prefetch={true}>
-              <img src="/Logo.png" alt="Eduaid Africa Logo" className="w-[100px] h-[60px] sm:w-[136.27px] sm:h-[81.61px] object-contain" />
+              <Image
+                src="/Logo.png"
+                alt="Eduaid Africa Logo"
+                className="w-[100px] h-[60px] sm:w-[136.27px] sm:h-[81.61px] object-contain"
+              />
             </Link>
           </div>
 
@@ -43,7 +51,9 @@ export default function Navbar() {
                 prefetch={true}
                 className={`
                   font-['Poppins'] text-xs font-medium leading-4 mx-3
-                  ${pathname === item.path ? 'text-[#1F892B]' : 'text-[#525151]'}
+                  ${
+                    pathname === item.path ? "text-[#1F892B]" : "text-[#525151]"
+                  }
                   hover:text-[#1F892B] transition-colors duration-200
                 `}
               >
@@ -68,13 +78,16 @@ export default function Navbar() {
             >
               Become a Member
             </Link>
-            <img src="/nigeria-flag.svg" alt="Nigeria Flag" className="w-6 h-6 ml-4" />
+            <Image
+              src="/nigeria-flag.svg"
+              alt="Nigeria Flag"
+              className="w-6 h-6 ml-4"
+            />
           </div>
 
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-
             className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#1F892B]"
           >
             <span className="sr-only">Open menu</span>
@@ -114,7 +127,11 @@ export default function Navbar() {
                     prefetch={true}
                     className={`
                       block px-3 py-2 rounded-md text-xs font-['Poppins']
-                      ${pathname === item.path ? 'text-[#1F892B] bg-gray-50' : 'text-[#525151]'}
+                      ${
+                        pathname === item.path
+                          ? "text-[#1F892B] bg-gray-50"
+                          : "text-[#525151]"
+                      }
                       hover:text-[#1F892B] hover:bg-gray-50 transition-colors duration-200
                     `}
                     onClick={() => setIsOpen(false)}
@@ -124,7 +141,11 @@ export default function Navbar() {
                 ))}
                 <div className="px-3 py-3 space-y-2">
                   <div className="flex justify-center py-2">
-                    <img src="/nigeria-flag.svg" alt="Nigeria Flag" className="w-6 h-6" />
+                    <Image
+                      src="/nigeria-flag.svg"
+                      alt="Nigeria Flag"
+                      className="w-6 h-6"
+                    />
                   </div>
                   <Link
                     href="/sign-in"
