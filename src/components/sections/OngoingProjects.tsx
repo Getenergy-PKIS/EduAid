@@ -13,6 +13,14 @@ interface ProjectCardProps {
   index: number;
 }
 
+const svgBackedProjectImages = new Set([
+  '/images/projects/education-expo.jpg',
+  '/images/projects/nigeria-school.jpg',
+  '/images/projects/school-renovation.jpg',
+  '/images/projects/teacher-training.jpg',
+  '/images/projects/training-webinar.jpg',
+]);
+
 const ProjectCard = ({ title, location, description, imageSrc, index }: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -90,6 +98,7 @@ const ProjectCard = ({ title, location, description, imageSrc, index }: ProjectC
           className={`object-cover transition-transform duration-500 ${isHovered ? 'scale-110' : 'scale-100'}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={index < 3}
+          unoptimized={svgBackedProjectImages.has(imageSrc)}
         />
 
         {/* Overlay effect on hover */}
