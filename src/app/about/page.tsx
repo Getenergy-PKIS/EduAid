@@ -72,6 +72,8 @@ export default function AboutPage() {
               <Image
                 src="/images/about/img4.png"
                 alt="EduAid Africa volunteers"
+                width={62}
+                height={32}
               />
               Visit the website
             </span>

@@ -37,6 +37,8 @@ export default function Navbar() {
               <Image
                 src="/Logo.png"
                 alt="Eduaid Africa Logo"
+                width={137}
+                height={82}
                 className="w-[100px] h-[60px] sm:w-[136.27px] sm:h-[81.61px] object-contain"
               />
             </Link>
@@ -81,6 +83,8 @@ export default function Navbar() {
             <Image
               src="/nigeria-flag.svg"
               alt="Nigeria Flag"
+              width={24}
+              height={24}
               className="w-6 h-6 ml-4"
             />
           </div>
@@ -144,6 +148,8 @@ export default function Navbar() {
                     <Image
                       src="/nigeria-flag.svg"
                       alt="Nigeria Flag"
+                      width={24}
+                      height={24}
                       className="w-6 h-6"
                     />
                   </div>
